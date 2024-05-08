@@ -15,6 +15,13 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+        id: setup-java
+
+      - name: Set JAVA_HOME Environment Variable
+        run: echo "JAVA_HOME=${{ steps.setup-java.outputs.java-home }}" >> $GITHUB_ENV
+
+      - name: Print JAVA_HOME
+        run: echo "JAVA_HOME=$JAVA_HOME"
 
       - name: Run Dastardly Action Step
         continue-on-error: true
