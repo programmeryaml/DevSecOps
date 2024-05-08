@@ -1,0 +1,23 @@
+name: DAST Workflow
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  run-dast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Run Dastardly Action Step
+        continue-on-error: true
+        uses: PortSwigger/dastardly-github-action@main
+        with:
+          target-url: 'https://ginandjuice.shop'
